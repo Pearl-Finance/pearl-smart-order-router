@@ -1,5 +1,5 @@
 import { JsonRpcProvider } from '@ethersproject/providers';
-import { ChainId, TradeType } from '@uniswap/sdk-core';
+import { ChainId, Token, TradeType } from '@uniswap/sdk-core';
 import { PERMIT2_ADDRESS } from '@uniswap/universal-router-sdk';
 import { BigNumber } from 'ethers/lib/ethers';
 
@@ -125,7 +125,7 @@ export abstract class Simulator {
         balance = await this.provider.getBalance(fromAddress);
       } else {
         const tokenContract = Erc20__factory.connect(
-          neededBalance.currency.address,
+          (neededBalance.currency as Token).address,
           this.provider
         );
         balance = await tokenContract.balanceOf(fromAddress);

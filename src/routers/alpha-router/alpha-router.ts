@@ -2353,7 +2353,7 @@ export class AlphaRouter
         balance = await this.provider.getBalance(fromAddress);
       } else {
         const tokenContract = Erc20__factory.connect(
-          neededBalance.currency.address,
+          (neededBalance.currency as Token).address, // Type assertion to NativeCurrency
           this.provider
         );
         balance = await tokenContract.balanceOf(fromAddress);

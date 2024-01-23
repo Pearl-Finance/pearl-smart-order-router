@@ -42,6 +42,9 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.AVALANCHE]: [],
   [ChainId.BASE_GOERLI]: [],
   [ChainId.BASE]: [],
+  [ChainId.UNREAL]: [],
+  [ChainId.OPTIMISM_SEPOLIA]: [],
+  [ChainId.ARBITRUM_SEPOLIA]: []
 };
 
 /**

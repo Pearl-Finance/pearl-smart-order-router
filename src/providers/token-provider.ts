@@ -538,6 +538,30 @@ export const WBTC_MOONBEAM = new Token(
   'Wrapped BTC bridged using Multichain'
 );
 
+export const USDC_UNREAL = new Token(
+  ChainId.UNREAL,
+  '0xabAa4C39cf3dF55480292BBDd471E88de8Cc3C97',
+  6,
+  'USDC',
+  'USDC'
+);
+
+export const DAI_UNREAL = new Token(
+  ChainId.UNREAL,
+  '0x665D4921fe931C0eA1390Ca4e0C422ba34d26169',
+  18,
+  'DAI',
+  'DAI'
+);
+
+export const USTB_UNREAL = new Token(
+  ChainId.UNREAL,
+  '0x665D4921fe931C0eA1390Ca4e0C422ba34d26169',
+  9,
+  'USTB',
+  'USTB'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -739,6 +763,8 @@ export const DAI_ON = (chainId: ChainId): Token => {
       return DAI_BNB;
     case ChainId.AVALANCHE:
       return DAI_AVAX;
+    case ChainId.UNREAL:
+      return DAI_UNREAL;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }
@@ -795,6 +821,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.UNREAL:
+      return USDC_UNREAL;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

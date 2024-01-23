@@ -22,10 +22,16 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.UNREAL,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
-export const V2_SUPPORTED = [ChainId.MAINNET, ChainId.GOERLI, ChainId.SEPOLIA];
+export const V2_SUPPORTED = [
+  ChainId.MAINNET,
+  ChainId.GOERLI,
+  ChainId.SEPOLIA,
+  ChainId.UNREAL,
+];
 
 export const HAS_L1_FEE = [
   ChainId.OPTIMISM,
@@ -81,6 +87,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.BASE;
     case 84531:
       return ChainId.BASE_GOERLI;
+    case 18231:
+      return ChainId.UNREAL;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -104,6 +112,7 @@ export enum ChainName {
   AVALANCHE = 'avalanche-mainnet',
   BASE = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
+  UNREAL = 'unreal',
 }
 
 export enum NativeCurrencyName {
@@ -173,6 +182,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.UNREAL]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -192,6 +206,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.BNB]: NativeCurrencyName.BNB,
   [ChainId.AVALANCHE]: NativeCurrencyName.AVALANCHE,
   [ChainId.BASE]: NativeCurrencyName.ETHER,
+  [ChainId.UNREAL]: NativeCurrencyName.ETHER,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -230,6 +245,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BASE;
     case 84531:
       return ChainName.BASE_GOERLI;
+    case 18231:
+      return ChainName.UNREAL;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -269,6 +286,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_AVALANCHE!;
     case ChainId.BASE:
       return process.env.JSON_RPC_PROVIDER_BASE!;
+    case ChainId.UNREAL:
+      return process.env.JSON_RPC_PROVIDER_UNREAL!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -396,6 +415,15 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.UNREAL]: new Token(
+    ChainId.UNREAL,
+    '0x9801EEB848987c0A8d6443912827bD36C288F8FB',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.OPTIMISM_SEPOLIA]: undefined,
+  [ChainId.ARBITRUM_SEPOLIA]: undefined,
 };
 
 function isMatic(
