@@ -189,13 +189,13 @@ export class AlphaRouter {
         // @TODO: Testing only approach
         const getSubgraphV2Url = () => {
             if (chainId === ChainId.UNREAL) {
-                return 'https://ipfs.io/ipfs/QmbzpZ6U78a4XnZaoRaT2NWRMqgjzbdG6xB5hqvLJquknP/unrealV2.json';
+                return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV2.json';
             }
             return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
         };
         const getSubgraphV3Url = () => {
             if (chainId === ChainId.UNREAL) {
-                return 'https://ipfs.io/ipfs/QmbzpZ6U78a4XnZaoRaT2NWRMqgjzbdG6xB5hqvLJquknP/unrealV3.json';
+                return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV3.json';
             }
             return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
         };
