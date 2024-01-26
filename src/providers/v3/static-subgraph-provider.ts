@@ -154,6 +154,13 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]],
   [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE], USDC_BASE],
+  [ChainId.OPTIMISM_SEPOLIA]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_SEPOLIA],
+  ],
+  [ChainId.ARBITRUM_SEPOLIA]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA],
+  ],
+  [ChainId.UNREAL]: [WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL]],
 };
 
 /**
@@ -206,6 +213,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
         return [
           [tokenA, tokenB, FeeAmount.LOWEST],
           [tokenA, tokenB, FeeAmount.LOW],
+          [tokenA, tokenB, FeeAmount.STABLE],
           [tokenA, tokenB, FeeAmount.MEDIUM],
           [tokenA, tokenB, FeeAmount.HIGH],
         ];
