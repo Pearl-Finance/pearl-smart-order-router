@@ -706,17 +706,17 @@ export class AlphaRouter
     // @TODO: Testing only approach
 
     const getSubgraphV2Url = (): string => {
-      // if (chainId === ChainId.UNREAL) {
-      //   return 'https://yellow-convinced-barracuda-669.mypinata.cloud/ipfs/QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH';
-      // }
+      if (chainId === ChainId.UNREAL) {
+        return 'https://ipfs.io/ipfs/QmbzpZ6U78a4XnZaoRaT2NWRMqgjzbdG6xB5hqvLJquknP/unrealV2.json';
+      }
 
       return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
     };
 
     const getSubgraphV3Url = (): string => {
-      // if (chainId === ChainId.UNREAL) {
-      //   return 'https://yellow-convinced-barracuda-669.mypinata.cloud/ipfs/QmbJWAESqCsf4RFCqEY7jecCashj8usXiyDNfKtZCwwzGb';
-      // }
+      if (chainId === ChainId.UNREAL) {
+        return 'https://ipfs.io/ipfs/QmbzpZ6U78a4XnZaoRaT2NWRMqgjzbdG6xB5hqvLJquknP/unrealV3.json';
+      }
 
       return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
     };
