@@ -562,6 +562,14 @@ export const USTB_UNREAL = new Token(
   'USTB'
 );
 
+export const RWA_UNREAL = new Token(
+  ChainId.UNREAL,
+  '0x909fd75ce23a7e61787fe2763652935f92116461',
+  18,
+  'RWA',
+  'RWA'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,

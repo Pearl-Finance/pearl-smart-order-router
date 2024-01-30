@@ -89,6 +89,7 @@ export declare const WBTC_MOONBEAM: Token;
 export declare const DAI_UNREAL: Token;
 export declare const USDC_UNREAL: Token;
 export declare const USTB_UNREAL: Token;
+export declare const RWA_UNREAL: Token;
 export declare class TokenProvider implements ITokenProvider {
     private chainId;
     protected multicall2Provider: IMulticallProvider;
