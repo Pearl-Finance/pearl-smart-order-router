@@ -27,6 +27,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.GOERLI]],
   [ChainId.SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.SEPOLIA]],
+  [ChainId.UNREAL]: [WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL]],
   //v2 not deployed on [optimism, arbitrum, polygon, celo, gnosis, moonbeam, bnb, avalanche] and their testnets
   [ChainId.OPTIMISM]: [],
   [ChainId.ARBITRUM_ONE]: [],
@@ -44,9 +45,6 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BASE]: [],
   [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [],
-  [ChainId.UNREAL]: [
-    WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL],
-  ],
 };
 
 /**

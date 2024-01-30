@@ -26,7 +26,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
-export const V2_SUPPORTED = [ChainId.MAINNET, ChainId.GOERLI, ChainId.SEPOLIA];
+export const V2_SUPPORTED = [ChainId.MAINNET, ChainId.GOERLI, ChainId.SEPOLIA, ChainId.UNREAL];
 
 export const HAS_L1_FEE = [
   ChainId.OPTIMISM,
