@@ -43,7 +43,7 @@ import {
   SwapRouterProvider,
   TokenPropertiesProvider,
   UniswapMulticallProvider,
-  URISubgraphProvider,
+  // URISubgraphProvider,
   V2QuoteProvider,
   V2SubgraphProviderWithFallBacks,
   V3SubgraphProviderWithFallBacks,
@@ -92,7 +92,7 @@ import { SWAP_ROUTER_02_ADDRESSES, WRAPPED_NATIVE_CURRENCY } from '../../util';
 import { CurrencyAmount } from '../../util/amounts';
 import {
   ID_TO_CHAIN_ID,
-  ID_TO_NETWORK_NAME,
+  // ID_TO_NETWORK_NAME,
   V2_SUPPORTED,
 } from '../../util/chains';
 import {
@@ -705,25 +705,25 @@ export class AlphaRouter
       );
     this.portionProvider = portionProvider ?? new PortionProvider();
 
-    const chainName = ID_TO_NETWORK_NAME(chainId);
+    // const chainName = ID_TO_NETWORK_NAME(chainId);
 
     // @TODO: Testing only approach
 
-    const getSubgraphV2Url = (): string => {
-      if (chainId === ChainId.UNREAL) {
-        return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV2.json';
-      }
+    // const getSubgraphV2Url = (): string => {
+    //   if (chainId === ChainId.UNREAL) {
+    //     return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV2.json';
+    //   }
 
-      return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
-    };
+    //   return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
+    // };
 
-    const getSubgraphV3Url = (): string => {
-      if (chainId === ChainId.UNREAL) {
-        return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV3.json';
-      }
+    // const getSubgraphV3Url = (): string => {
+    //   if (chainId === ChainId.UNREAL) {
+    //     return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV3.json';
+    //   }
 
-      return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
-    };
+    //   return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
+    // };
 
     // ipfs urls in the following format: `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/${protocol}/${chainName}.json`;
     if (v2SubgraphProvider) {
