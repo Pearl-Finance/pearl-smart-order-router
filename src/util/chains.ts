@@ -22,6 +22,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.UNREAL,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 

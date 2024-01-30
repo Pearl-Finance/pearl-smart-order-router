@@ -44,7 +44,9 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BASE]: [],
   [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [],
-  [ChainId.UNREAL]: [],
+  [ChainId.UNREAL]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL],
+  ],
 };
 
 /**
