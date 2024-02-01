@@ -24,6 +24,7 @@ import {
   DAI_OPTIMISM_GOERLI,
   DAI_POLYGON_MUMBAI,
   DAI_SEPOLIA,
+  DAI_UNREAL,
   FEI_MAINNET,
   ITokenProvider,
   USDC_ARBITRUM,
@@ -38,11 +39,13 @@ import {
   USDC_OPTIMISM_GOERLI,
   USDC_POLYGON,
   USDC_SEPOLIA,
+  USDC_UNREAL,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USTB_UNREAL,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
   WBTC_MAINNET,
@@ -173,6 +176,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BNB]: [DAI_BNB, USDC_BNB, USDT_BNB],
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
+  [ChainId.UNREAL]: [DAI_UNREAL, USDC_UNREAL, USTB_UNREAL, WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL]!],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {
@@ -656,7 +660,7 @@ export async function getV2CandidatePools({
   const allPoolsRaw = await subgraphProvider.getPools(tokenIn, tokenOut, {
     blockNumber,
   });
-
+  log.debug("ALL POOLS RAW: ", allPoolsRaw);
   // With tens of thousands of V2 pools, operations that copy pools become costly.
   // Mutate the pool directly rather than creating a new pool / token to optimmize for speed.
   for (const pool of allPoolsRaw) {

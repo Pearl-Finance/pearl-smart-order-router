@@ -1734,7 +1734,7 @@ export class AlphaRouter
       protocols.includes(Protocol.MIXED) ||
       (noProtocolsSpecified && v2SupportedInChain);
     const mixedProtocolAllowed =
-      [ChainId.MAINNET, ChainId.GOERLI].includes(this.chainId) &&
+      [ChainId.MAINNET, ChainId.GOERLI, ChainId.UNREAL].includes(this.chainId) &&
       tradeType === TradeType.EXACT_INPUT;
 
     const beforeGetCandidates = Date.now();
@@ -1772,6 +1772,7 @@ export class AlphaRouter
       (v2SupportedInChain && (v2ProtocolSpecified || noProtocolsSpecified)) ||
       (shouldQueryMixedProtocol && mixedProtocolAllowed)
     ) {
+      log.debug("Fetching V2 candidate pools")
       // Fetch all the pools that we will consider routing via. There are thousands
       // of pools, so we filter them to a set of candidate pools that we expect will
       // result in good prices.
