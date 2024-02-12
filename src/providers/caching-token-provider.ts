@@ -22,7 +22,6 @@ import {
   DAI_OPTIMISM,
   DAI_OPTIMISM_GOERLI,
   DAI_POLYGON_MUMBAI,
-  DAI_UNREAL,
   ETH_BNB,
   ITokenProvider,
   TokenAccessor,
@@ -38,13 +37,11 @@ import {
   USDC_OPTIMISM_GOERLI,
   USDC_POLYGON,
   USDC_SEPOLIA,
-  USDC_UNREAL,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
-  USTB_UNREAL,
   WBTC_ARBITRUM,
   WBTC_MAINNET,
   WBTC_MOONBEAM,
@@ -146,12 +143,6 @@ export const CACHE_SEED_TOKENS: {
   [ChainId.BASE]: {
     USDC: USDC_BASE,
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.BASE],
-  },
-  [ChainId.UNREAL]: {
-    USDC: USDC_UNREAL,
-    DAI: DAI_UNREAL,
-    USTB: USTB_UNREAL,
-    WETH: WRAPPED_NATIVE_CURRENCY[ChainId.UNREAL],
   },
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
 };

@@ -57,7 +57,6 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.MAINNET].v1MixedRouteQuoterAddress,
   [ChainId.GOERLI]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.GOERLI].v1MixedRouteQuoterAddress,
-  [ChainId.UNREAL]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNREAL].v1MixedRouteQuoterAddress,
 };
 
 export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
@@ -84,7 +83,7 @@ export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
   if (chainId == ChainId.BNB) {
     return BNB_SWAP_ROUTER_02_ADDRESS;
   } else if (chainId === ChainId.UNREAL) {
-    return '0x1e40D13384DA02412cE5a5CB9972666F5ec173fF';
+    return '0xc4330B6fb035F75107F29bf741B945167f2f5330';
   }
 
   return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';

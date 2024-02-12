@@ -39,7 +39,7 @@ const SUBGRAPH_URL_BY_CHAIN: { [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]:
     'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v2-dev',
   [ChainId.UNREAL]:
-    'https://api.goldsky.com/api/public/project_clrpcv6yrbv7901vg2s0p1rk7/subgraphs/pearlv2-univ2-subgraph/1.0.2/gn',
+    'https://api.goldsky.com/api/public/project_clrpcv6yrbv7901vg2s0p1rk7/subgraphs/pearlv2-univ2-subgraph/1.0.1/gn',
 };
 
 const threshold = 0.025;
@@ -198,18 +198,13 @@ export class V2SubgraphProvider implements IV2SubgraphProvider {
     // Which helps filter pools with manipulated prices/liquidity.
 
     // TODO: Remove. Temporary fix to ensure tokens without trackedReserveETH are in the list.
-    const USDT = '0x9be263a8a67c351e1286640360a396a2becc5b5e';
-    const RWA = '0x909fd75ce23a7e61787fe2763652935f92116461';
-
-    log.debug(`Got pools RAW: ${JSON.stringify(pools)}`);
+    const FEI = '0x956f47f50a910163d8bf957cf5846d573e7f87ca';
 
     const poolsSanitized: V2SubgraphPool[] = pools
       .filter((pool) => {
         return (
-          pool.token0.id == USDT ||
-          pool.token1.id == USDT ||
-          pool.token0.id == RWA ||
-          pool.token1.id == RWA ||
+          pool.token0.id == FEI ||
+          pool.token1.id == FEI ||
           parseFloat(pool.trackedReserveETH) > threshold
         );
       })

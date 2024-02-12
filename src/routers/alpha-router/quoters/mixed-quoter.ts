@@ -84,8 +84,7 @@ export class MixedQuoter extends BaseQuoter<
     }
 
     const [v3CandidatePools, v2CandidatePools] = v3v2candidatePools;
-    log.debug("candidate pools v3: ", v3CandidatePools.poolAccessor.getAllPools())
-    log.debug("candidate pools v2: ", v2CandidatePools.poolAccessor.getAllPools())
+
     const {
       V2poolAccessor,
       V3poolAccessor,
@@ -137,6 +136,7 @@ export class MixedQuoter extends BaseQuoter<
         );
       }
     );
+
     const { maxSwapsPerPath } = routingConfig;
 
     const routes = computeAllMixedRoutes(
