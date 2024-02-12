@@ -43,7 +43,7 @@ import {
   SwapRouterProvider,
   TokenPropertiesProvider,
   UniswapMulticallProvider,
-  URISubgraphProvider,
+  // URISubgraphProvider,
   V2QuoteProvider,
   V2SubgraphProviderWithFallBacks,
   V3SubgraphProviderWithFallBacks,
@@ -70,6 +70,7 @@ import {
   IV2PoolProvider,
   V2PoolProvider,
 } from '../../providers/v2/pool-provider';
+import { V2SubgraphProvider } from '../../providers/v2/subgraph-provider';
 import {
   ArbitrumGasData,
   ArbitrumGasDataProvider,
@@ -81,14 +82,17 @@ import {
   IV3PoolProvider,
   V3PoolProvider,
 } from '../../providers/v3/pool-provider';
-import { IV3SubgraphProvider } from '../../providers/v3/subgraph-provider';
+import {
+  IV3SubgraphProvider,
+  V3SubgraphProvider,
+ } from '../../providers/v3/subgraph-provider';
 import DEFAULT_TOKEN_LIST from '../../tokenList.json';
 import { Erc20__factory } from '../../types/other/factories/Erc20__factory';
 import { SWAP_ROUTER_02_ADDRESSES, WRAPPED_NATIVE_CURRENCY } from '../../util';
 import { CurrencyAmount } from '../../util/amounts';
 import {
   ID_TO_CHAIN_ID,
-  ID_TO_NETWORK_NAME,
+  // ID_TO_NETWORK_NAME,
   V2_SUPPORTED,
 } from '../../util/chains';
 import {
@@ -701,25 +705,25 @@ export class AlphaRouter
       );
     this.portionProvider = portionProvider ?? new PortionProvider();
 
-    const chainName = ID_TO_NETWORK_NAME(chainId);
+    // const chainName = ID_TO_NETWORK_NAME(chainId);
 
     // @TODO: Testing only approach
 
-    const getSubgraphV2Url = (): string => {
-      if (chainId === ChainId.UNREAL) {
-        return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV2.json';
-      }
+    // const getSubgraphV2Url = (): string => {
+    //   if (chainId === ChainId.UNREAL) {
+    //     return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV2.json';
+    //   }
 
-      return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
-    };
+    //   return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v2/${chainName}.json`;
+    // };
 
-    const getSubgraphV3Url = (): string => {
-      if (chainId === ChainId.UNREAL) {
-        return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV3.json';
-      }
+    // const getSubgraphV3Url = (): string => {
+    //   if (chainId === ChainId.UNREAL) {
+    //     return 'https://ipfs.io/ipfs/QmSzoEXaeG1ejZoVtVBvxDg4TBoW7RDjsMPqqPre2EWih3/unrealV3.json';
+    //   }
 
-      return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
-    };
+    //   return `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/v3/${chainName}.json`;
+    // };
 
     // ipfs urls in the following format: `https://cloudflare-ipfs.com/ipns/api.uniswap.org/v1/pools/${protocol}/${chainName}.json`;
     if (v2SubgraphProvider) {
@@ -728,7 +732,7 @@ export class AlphaRouter
       this.v2SubgraphProvider = new V2SubgraphProviderWithFallBacks([
         new CachingV2SubgraphProvider(
           chainId,
-          new URISubgraphProvider(chainId, getSubgraphV2Url(), undefined, 0),
+          new V2SubgraphProvider(chainId),
           new NodeJSCache(new NodeCache({ stdTTL: 300, useClones: false }))
         ),
         new StaticV2SubgraphProvider(chainId),
@@ -741,7 +745,7 @@ export class AlphaRouter
       this.v3SubgraphProvider = new V3SubgraphProviderWithFallBacks([
         new CachingV3SubgraphProvider(
           chainId,
-          new URISubgraphProvider(chainId, getSubgraphV3Url(), undefined, 0),
+          new V3SubgraphProvider(chainId),
           new NodeJSCache(new NodeCache({ stdTTL: 300, useClones: false }))
         ),
         new StaticV3SubgraphProvider(chainId, this.v3PoolProvider),
@@ -1730,7 +1734,7 @@ export class AlphaRouter
       protocols.includes(Protocol.MIXED) ||
       (noProtocolsSpecified && v2SupportedInChain);
     const mixedProtocolAllowed =
-      [ChainId.MAINNET, ChainId.GOERLI].includes(this.chainId) &&
+      [ChainId.MAINNET, ChainId.GOERLI, ChainId.UNREAL].includes(this.chainId) &&
       tradeType === TradeType.EXACT_INPUT;
 
     const beforeGetCandidates = Date.now();
@@ -1768,6 +1772,7 @@ export class AlphaRouter
       (v2SupportedInChain && (v2ProtocolSpecified || noProtocolsSpecified)) ||
       (shouldQueryMixedProtocol && mixedProtocolAllowed)
     ) {
+      log.debug("Fetching V2 candidate pools")
       // Fetch all the pools that we will consider routing via. There are thousands
       // of pools, so we filter them to a set of candidate pools that we expect will
       // result in good prices.
